@@ -137,7 +137,7 @@ This introduces true coupling physics.
 
 ⸻
 
-🧩 Final System Structure
+Final System Structure
 
 Step 1: Solve Mechanics
 
@@ -154,13 +154,4 @@ $$\nabla \cdot (\sigma(\varepsilon(u)) \nabla V) = 0$$
 
 
 The electrical problem becomes a material-dependent PDE, where deformation modifies conductivity, which in turn reshapes the electric field.
-
-⸻
-
-✅ Final Takeaway
-	•	FEM reduces PDE → linear system
-	•	Electrical conduction = Laplace-type problem
-	•	Coupling enters through:
-\sigma = \sigma(\varepsilon(u))
-	•	This creates a multiphysics system (mechanics + electricity)
 
