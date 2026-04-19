@@ -20,7 +20,7 @@ The main idea is to understand and model the relation between applied force, str
 ## Structure
 
 - `FEM/` – finite element implementation and test cases  
-- `images/` – simulation outputs  
+- `Particle Simulation/` – An initial geometric view of crystal structure
 
 ## Goal
 
