@@ -1,2 +1,100 @@
-venv
-wsl_venv
+# Virtual environments
+venv/
+env/
+wsl_venv/
+.env/
+.venv/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+
+# GPAW specific files
+*.gpw           # GPAW wavefunction files
+*.nc            # NetCDF output files (often large)
+*.hdf5
+*.cube
+*.xyz
+*.traj          # ASE trajectory files
+*.json
+*.pckl
+
+
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Distribution/packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Environment files
+.env.local
+.env.*.local
+
+# Backup files
+*.bak
+*.backup
+*.old
+
+
+# Logs and database
+*.db
+*.sqlite
+*.sqlite3
+logs/
+*.log
+
+# OS specific
+Thumbs.db
+Desktop.ini
+
+# LaTeX build artifacts
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+*.out
+*.toc
+*.lof
+*.lot
+*.blg
+*.bbl
+*.bcf
+*.run.xml
+*.nav
+*.snm
+*.vrb
+*.idx
+*.ind
+*.ilg
+*.glg
+*.glo
+*.gls
+*.xdy
+*.acn
+*.acr
+*.alg
+*.ist
+
+# LaTeX temp dirs (if using latexmk)
+.latexmk_out/
