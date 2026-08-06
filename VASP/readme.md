@@ -3,17 +3,16 @@
 This directory computes how silicon's electronic structure responds to strain,
 using density-functional theory (DFT). The output is a set of **deformation
 potentials** — the slopes that tell us how the band edges move and split as the
-crystal is deformed. Those slopes are what turn the conductivity in the FEM
+crystal is deformed and turns the conductivity in the FEM
 model from a fitted guess into a physics-derived quantity $\sigma(\varepsilon)$.
 
-The logic of the whole directory is one sentence: **strain changes where the
+We can summarize the process as: **strain changes where the
 atoms sit, that changes the potential the electrons feel, that changes the band
-energies, and the change in the gap is the deformation potential.** Everything
-below is the machinery that makes each link in that chain trustworthy.
+energies, and the change in the gap is the deformation potential.
 
 ---
 
-## 1. What VASP actually computes
+## 1. VASP computations
 
 DFT finds the ground-state electron density $n(\mathbf{r})$, written as a sum
 over the occupied Kohn–Sham (KS) orbitals $\psi_i$:
@@ -27,11 +26,9 @@ $$\hat{H}_\text{KS} = -\frac{\hbar^2}{2m}\nabla^2 + V_\text{eff}(\mathbf{r}),
 \qquad
 V_\text{eff} = V_\text{ext} + V_H + V_\text{xc}.$$
 
-The three pieces:
-
 - **External potential $V_\text{ext}(\mathbf{r})$** — the attraction the valence
   electrons feel from the positive ion cores. In VASP the cores are PAW
-  pseudopotentials (nucleus + frozen core electrons), not bare nuclei.
+  pseudopotentials (nucleus + frozen core electrons).
 - **Hartree term $V_H(\mathbf{r})$** — the classical electrostatic repulsion of
   an electron against the whole electron cloud:
   $$V_H(\mathbf{r}) = e^2 \int \frac{n(\mathbf{r}')}{|\mathbf{r}-\mathbf{r}'|}\,d^3r'.$$
@@ -39,29 +36,24 @@ The three pieces:
   effects beyond Hartree, approximated by a functional (we use PBE, a GGA):
   $$V_\text{xc}(\mathbf{r}) = \frac{\delta E_\text{xc}[n]}{\delta n(\mathbf{r})}.$$
 
-### Where the crystal structure actually lives
 
-This is the part that matters for strain, and it is easy to get wrong.
-$V_\text{ext}$ is **not** stored in the POTCAR. POTCAR only gives the *shape* of
-one ion's pseudopotential, per chemical species. The actual potential is a sum
-of those shapes, one copy centred on every ion in the (infinitely repeated)
-crystal:
+
+### $V_\text{ext}$ 
+POTCAR gives the *shape* of one ion's pseudopotential, per chemical species. The potential is a sum of those shapes, one copy centred on every ion in the (infinitely repeated) crystal:
 
 $$V_\text{ext}(\mathbf{r}) = \sum_{I}\sum_{\mathbf{R}}
   v^{\text{PP}}_{s(I)}\!\left(\mathbf{r}-\boldsymbol{\tau}_I-\mathbf{R}\right).$$
 
-Read against the input files:
 
 - $v^{\text{PP}}_{s}$ — the per-species pseudopotential shape → **POTCAR**.
 - $\boldsymbol{\tau}_I$ — the atomic positions → **POSCAR**.
 - $\mathbf{R}=n_1\mathbf{a}_1+n_2\mathbf{a}_2+n_3\mathbf{a}_3$ — the lattice
   tiling → **POSCAR** (the three lattice vectors).
 
-So POTCAR is the stencil and POSCAR decides where the stencil is stamped and how
-space is tiled. **Strain only ever enters the KS problem through $V_\text{ext}$**,
-because strain only moves $\boldsymbol{\tau}_I$ and $\mathbf{a}_i$. $V_H$ and
-$V_\text{xc}$ are not where strain lives — they only respond afterwards, because
-the density relaxes to the new $V_\text{ext}$.
+POTCAR is the stencil and POSCAR decides where the stencil is stamped and how
+space is tiled. **Strain enters the KS problem through $V_\text{ext}$**,
+because strain only moves $\boldsymbol{\tau}_I$ and $\mathbf{a}_i$. Also $V_H$ and
+$V_\text{xc}$ are not affected directly by strains — they only respond afterwards, because the density relaxes to the new $V_\text{ext}$.
 
 ### Self-consistent field (SCF) cycle
 
@@ -76,7 +68,7 @@ $V_\text{eff}$, so it iterates:
 
 The converged eigenvalues $\varepsilon_{n\mathbf{k}}$ are the band structure.
 
----
+
 
 ## 2. From bands to conductivity
 
@@ -89,17 +81,15 @@ $n \propto \int g(E)\,f(E)\,dE$ with $f$ the Fermi–Dirac distribution. When
 strain shifts the band edges, $g(E)$ and hence the carrier density change, and
 that is the microscopic origin of $\sigma(\varepsilon)$:
 
-$$\Delta E_g(\varepsilon) \approx (a_c + a_v)\,\varepsilon_h
+$$\Delta E_g(\varepsilon) \approx (a_c + a_v)\,\varepsilon_h = \Xi_d
 \;\Longrightarrow\;
 \sigma(\varepsilon)\ \text{from first principles},$$
 
 replacing the phenomenological $\sigma_0(1 + \pi\varepsilon + \alpha\varepsilon^2)$.
-The coefficients $a_c+a_v$ and their shear counterparts are exactly the
+The coefficients like $\Xi_d$, $\Xi_u$ and their shear counterparts are the
 deformation potentials this directory extracts.
 
----
-
-## 3. The three strain channels
+## 3. Strain channels
 
 A strain is applied as a deformation gradient $F = \mathbb{1}+\varepsilon$ acting
 on the lattice vectors (`cell = cell0 @ M` in the generator). Cubic symmetry
@@ -112,43 +102,37 @@ different deformation potential:
 | Uniaxial ($\Gamma_{12}$) | `diag(1+ε, 1, 1)` | one axis stretched, becomes tetragonal | $\Xi_u$ (valley splitting) |
 | Shear ($\Gamma_{25'}$) | `I + ε·[[0,1,1],[1,0,1],[1,1,0]]` | cell **angles** tilt, volume fixed | $d$ (valence splitting) |
 
-Why they look different in the band structure:
 
-- **Hydrostatic** keeps every direction equivalent, so no degeneracy lifts — the
-  gap just shifts a little. This is the expected "boring" result and is itself a
-  validation (it confirms the strain carries no symmetry-breaking part).
+- **Hydrostatic** All directions remain equivalent, no degeneracy lifts — there is 
+  just gap shifts. This is itself a validation (it confirms that this strain carries no symmetry-breaking part).
 - **Uniaxial** makes the strained axis different from the other two, splitting
   the six conduction $\Delta$ valleys into a 2-fold set (along the axis) and a
   4-fold set (transverse).
 - **Shear** tilts the bonds unequally and splits the triply degenerate valence
-  top at $\Gamma$. This is the clearest degeneracy lift to see, because it sits
+  top at $\Gamma_{25}'$. This causes the degeneracy to lift, because it sits
   right at $\Gamma$.
 
----
 
-## 4. The calculation workflow — and why each piece exists
+## 4. Workflow
 
-The original setup copied one `INCAR` and one `KPOINTS` into every directory.
-That is correct only for the simplest case. Here is what changed and the reason
-behind each change.
+We have copied through the original setup one `INCAR` and one `KPOINTS` into every directory.
+This works only for the simplest case. 
 
 ### 4.1 Three stages per directory: relax → SCF → bands
 
 A band-structure plot is a **non-self-consistent** run (`ICHARG=11`): it reads a
-*fixed* charge density and just diagonalises the Hamiltonian along a k-path. So
-that density has to already exist and be converged. If you run `ICHARG=11` cold,
+*fixed/converged* charge density and just diagonalises the Hamiltonian along a k-path. So that density has to already be converged. If you run `ICHARG=11` cold,
 VASP uses an unconverged starting density and the eigenvalues are computed
-against the wrong potential — wrong by tens of meV, which is exactly the size of
-the band shifts we are trying to measure. So each directory runs in stages:
+against the wrong potential. So for a band structure run each directory runs in stages:
 
 - **`INCAR.scf`** (`ICHARG=2`) — self-consistent run on a uniform mesh; converges
   the density and writes `CHGCAR`.
 - **`INCAR.band`** (`ICHARG=11`) — non-self-consistent bands on the k-path,
-  reading that `CHGCAR`.
+  reading `CHGCAR`.
 - **`INCAR.relax`** — *shear directories only* (see 4.4).
 
-The SCF stage is repeated in **every** directory, never shared: each strained
-cell has its own potential and its own converged density, so a strained run must
+The SCF stage is repeated in all directories: each strained
+cell has potential and converged density, so a strained run must
 not read another cell's `CHGCAR`.
 
 ### 4.2 `ISYM = 0` in every strained run
@@ -159,9 +143,9 @@ which re-imposes the very degeneracy the strain is supposed to lift — giving a
 splitting of exactly zero. Turning symmetry off (`ISYM=0`) keeps the
 inequivalent points distinct so the splitting survives.
 
-### 4.3 KPOINTS: a mesh for SCF, a line for bands
+### 4.3 KPOINTS: SCF mesh, bands line
 
-These are two genuinely different sampling jobs, so they need two files.
+These are different sampling jobs, so they need two files.
 
 - **`KPOINTS.mesh`** — an `8×8×8` Γ-centred grid. The SCF stage needs to sample
   the *whole* Brillouin zone to build an accurate charge density (the density is
@@ -172,9 +156,9 @@ These are two genuinely different sampling jobs, so they need two files.
   not enough to converge a density (that is why it must read the mesh-derived
   `CHGCAR`), but it is exactly what a band plot wants.
 
-### 4.4 The dual-X path — why these specific coordinates
+### 4.4 The dual-X path 
 
-This is the subtle one. The valley splitting under uniaxial strain only shows up
+The valley splitting under uniaxial strain only shows up
 if the path visits **both** of the now-inequivalent X points. A standard cubic
 path visits only one X, so it hides the effect entirely.
 
@@ -224,7 +208,7 @@ sheared cell, or the valence splitting — and therefore $d$ — comes out too
 small. Hence the shear directories carry an extra `INCAR.relax` (`ISIF=2`,
 `IBRION=2`), run first, with `CONTCAR → POSCAR` carried into the SCF stage.
 
-### 4.6 `jobscript` and clean re-runs
+### 4.6 `jobscript`
 
 The remote jobscript runs relax → SCF → bands in order, swapping in the matching
 INCAR and KPOINTS at each stage. A guard, `if [ -f INCAR.relax ]`, runs the
@@ -234,8 +218,6 @@ it. Each remote directory is wiped and recreated before upload (`rm -rf … &&
 mkdir -p …`) so a stale `POSCAR` or `CHGCAR` from a previous channel cannot be
 re-run by accident. `vasprun.xml` is overwritten by each stage, so the retrieved
 file is always the band run.
-
----
 
 ## 5. Extracting the deformation potentials
 
