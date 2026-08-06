@@ -1,0 +1,31 @@
+ running on    1 total cores
+ distrk:  each k-point on    1 cores,    1 groups
+ distr:  one band on    1 cores,    1 groups
+ vasp.6.3.0 20Jan22 (build Mar 29 2022 17:59:55) complex                        
+  
+ POSCAR found type information on POSCAR Si
+ POSCAR found :  1 types and       2 ions
+ scaLAPACK will be used
+ LDA part: xc-table for Pade appr. of Perdew
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ WAVECAR not read
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.223221025876E+01    0.22322E+01   -0.25304E+03  4176   0.523E+02
+DAV:   2    -0.108628288454E+02   -0.13095E+02   -0.12561E+02  6408   0.675E+01
+DAV:   3    -0.110171377397E+02   -0.15431E+00   -0.15431E+00  5064   0.928E+00
+DAV:   4    -0.110178031094E+02   -0.66537E-03   -0.66537E-03  6864   0.663E-01
+DAV:   5    -0.110178034970E+02   -0.38768E-06   -0.38768E-06  5160   0.125E-02    0.497E+00
+DAV:   6    -0.108917548594E+02    0.12605E+00   -0.83314E-02  4864   0.151E+00    0.304E+00
+DAV:   7    -0.108344496664E+02    0.57305E-01   -0.15749E-01  5080   0.220E+00    0.197E-01
+DAV:   8    -0.108355113421E+02   -0.10617E-02   -0.39938E-03  4672   0.472E-01    0.748E-02
+DAV:   9    -0.108357001323E+02   -0.18879E-03   -0.18101E-04  6048   0.104E-01    0.571E-02
+DAV:  10    -0.108357270717E+02   -0.26939E-04   -0.32514E-05  4784   0.422E-02    0.103E-02
+DAV:  11    -0.108357267450E+02    0.32666E-06   -0.56905E-07  6592   0.528E-03    0.232E-03
+DAV:  12    -0.108357270573E+02   -0.31232E-06   -0.55981E-07  4688   0.596E-03    0.108E-03
+DAV:  13    -0.108357270719E+02   -0.14554E-07   -0.19267E-09  3272   0.396E-04
+   1 F= -.10835727E+02 E0= -.10835727E+02  d E =-.117691E-11
+ writing wavefunctions

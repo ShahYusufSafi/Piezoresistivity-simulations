@@ -1,0 +1,23 @@
+source /etc/profile.d/modules.sh 2>/dev/null || true
+module load intel-oneapi-mkl
+
+# Stage A - ionic relaxation (shear only; skipped if INCAR.relax absent)
+if [ -f INCAR.relax ]; then
+    cp INCAR.relax INCAR
+    cp KPOINTS.mesh KPOINTS
+    vasp > log.relax
+    cp CONTCAR POSCAR
+fi
+
+# Stage B - SCF on uniform mesh -> CHGCAR  (STRESS TENSOR LIVES HERE)
+cp INCAR.scf INCAR      || { echo "Missing INCAR.scf";    exit 1; }
+cp KPOINTS.mesh KPOINTS || { echo "Missing KPOINTS.mesh"; exit 1; }
+vasp > log.scf
+grep -q "reached required accuracy" log.scf || echo "WARNING: SCF not converged"
+cp OUTCAR OUTCAR.scf ; cp vasprun.xml vasprun.scf.xml     # <-- preserve before Stage C
+
+# Stage C - non-SCF bands on the k-path, reads CHGCAR
+cp INCAR.band INCAR     || { echo "Missing INCAR.band";   exit 1; }
+cp KPOINTS.line KPOINTS || { echo "Missing KPOINTS.line"; exit 1; }
+vasp > log.band
+cp OUTCAR OUTCAR.band ; cp vasprun.xml vasprun.band.xml

@@ -1,0 +1,15 @@
+source /etc/profile.d/modules.sh 2>/dev/null || true
+module load intel-oneapi-mkl
+
+# Stage A - ionic relaxation (Kleinman displacement under [111] shear)
+cp INCAR.relax INCAR; cp KPOINTS.mesh KPOINTS
+vasp > log.relax
+cp CONTCAR POSCAR
+
+# Stage B - SCF on uniform mesh -> writes CHGCAR
+cp INCAR.scf INCAR; cp KPOINTS.mesh KPOINTS
+vasp > log.scf
+
+# Stage C - non-SCF bands on the k-path, reads CHGCAR
+cp INCAR.band INCAR; cp KPOINTS.line KPOINTS
+vasp > log.band

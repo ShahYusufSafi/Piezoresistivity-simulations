@@ -1,0 +1,9 @@
+mass legs: longitudinal then transverse
+30
+line
+reciprocal
+0.3875 0.0000 0.3875  L-
+0.4566 0.0000 0.4566  L+
+
+0.4221 -0.0346 0.3875  T-
+0.4221 0.0346 0.4566  T+

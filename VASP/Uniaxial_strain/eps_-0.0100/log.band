@@ -1,0 +1,26 @@
+ running on    1 total cores
+ distrk:  each k-point on    1 cores,    1 groups
+ distr:  one band on    1 cores,    1 groups
+ vasp.6.3.0 20Jan22 (build Mar 29 2022 17:59:55) complex                        
+  
+ POSCAR found type information on POSCAR Si
+ POSCAR found :  1 types and       2 ions
+ scaLAPACK will be used
+ LDA part: xc-table for Pade appr. of Perdew
+ WARNING: stress and forces are not correct
+ POSCAR, INCAR and KPOINTS ok, starting setup
+ FFT: planning ... GRIDC
+ FFT: planning ... GRID_SOFT
+ FFT: planning ... GRID
+ WAVECAR not read
+ charge-density read from file: unknown                                 
+ entering main loop
+       N       E                     dE             d eps       ncg     rms          rms(c)
+DAV:   1     0.856266236414E+01    0.85627E+01   -0.25200E+03  1288   0.508E+02
+DAV:   2    -0.507924077205E+01   -0.13642E+02   -0.12821E+02  2168   0.667E+01
+DAV:   3    -0.524033799118E+01   -0.16110E+00   -0.16110E+00  1664   0.913E+00
+DAV:   4    -0.524088389281E+01   -0.54590E-03   -0.54590E-03  2064   0.538E-01
+DAV:   5    -0.524088512876E+01   -0.12360E-05   -0.12354E-05  1648   0.165E-02
+DAV:   6    -0.524088514721E+01   -0.18448E-07   -0.19110E-07  1464   0.163E-03
+   1 F= -.52408851E+01 E0= -.52408851E+01  d E =-.860537E-11
+ writing wavefunctions
