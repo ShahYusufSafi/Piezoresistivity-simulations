@@ -1,6 +1,6 @@
 import numpy as np
 from ase.io import read, write
-import os
+import os, glob
 
 # ============================================================================
 #  mass_eps0 — effective-mass validation run (UNSTRAINED Si)
@@ -64,62 +64,62 @@ import os
 # ============================================================================
 
 
-EQ = '../Equilibirium_run/outputs/Yusuf'
+
+EQ = './eps_+0.0000'
 atoms0 = read(f'{EQ}/POSCAR')
 
 d = 'mass_eps0'          # dedicated one-off, NOT part of the strain sweep
 os.makedirs(d, exist_ok=True)
+
+
+reset_dirs = True
+if reset_dirs:
+    for f in glob.glob(f'{d}/*'):
+        os.remove(f)
 write(f'{d}/POSCAR', atoms0, format='vasp')   # unstrained
 
-# ---- INCARs: reuse staged SCF -> non-SCF band recipe ----
-open(f'{d}/INCAR.scf', 'w').write(
-"ISTART=0\nICHARG=2\nENCUT=320\nISMEAR=0\nSIGMA=0.05\nISYM=0\n"
-"EDIFF=1E-6\nLCHARG=.TRUE.\nNSW=0\nGGA=PE\n")
-open(f'{d}/INCAR.band', 'w').write(
-"ISTART=0\nICHARG=11\nENCUT=320\nISMEAR=0\nSIGMA=0.05\nISYM=0\nLORBIT=11\nGGA=PE\n")
-os.system(f'cp {EQ}/POTCAR {d}/')
-open(f'{d}/KPOINTS.mesh', 'w').write("auto\n0\nGamma\n8 8 8\n0 0 0\n")
 
-# ---- the mass path: two short legs crossing at the Si Delta-valley ----
-# Si CBM (Delta) at fractional ~ (0.42, 0, 0.42) in the FCC primitive recip basis.
-# Longitudinal = along Gamma->X (the (h,0,h) line). Transverse = perpendicular.
-#k0 = np.array([0.42, 0.00, 0.42])          # valley center (fractional)
-#d_long = np.array([0.06, 0.00, 0.06])      # along the axis (small step)
-#d_perp = np.array([0.00, 0.06, 0.00])      # perpendicular (ky)
+os.system(f'cp {EQ}/INCAR.scf {d}')
+os.system(f'cp {EQ}/INCAR.band {d}')
+os.system(f'cp {EQ}/KPOINTS.mesh {d}')
+os.system(f'cp {EQ}/POTCAR {d}')
 
-recip = atoms0.cell.reciprocal() * 2*np.pi
-B    = np.array(recip)          # frac -> cart
-Binv = np.linalg.inv(B)         # cart -> frac
 
-k0_cart = np.array([0.0, 0.9768, 0.0])   # valley center, straight from your print
-delta   = 0.08                            # Å⁻¹ half-width
+recip = atoms0.cell.reciprocal() * 2*np.pi # frac -> cart
+B    = np.array(recip)          
+Binv = np.linalg.inv(B)         # cart -> frac (we use this map to convert back to fracrtional coordinates)
 
-k0     = k0_cart @ Binv
+k0_cart = np.array([0.0, 0.9768, 0.0])   # valley center, from uniaxial.ipynb
+delta   = 0.05                            #  sampling half-width in Ang^-1: how far we step off k0 to feel the curvature.
 
-# longitudinal = along the valley axis ŷ ; transverse = along x̂ (⊥ to ŷ)
+# We build 2 orthogonal vectors
 long_dir = np.array([0.0, 1.0, 0.0])
 perp_dir = np.array([1.0, 0.0, 0.0])
 
+# Now we shift the k0 to the left-right with vector parallel to it, and up-down with vector prependicular to it (because k0 is in (0,1,0) direction) 
 L_cart = [k0_cart - delta*long_dir, k0_cart + delta*long_dir]
 T_cart = [k0_cart - delta*perp_dir, k0_cart + delta*perp_dir]
 
-L_end = [p @ Binv for p in L_cart]   # -> fractional for KPOINTS
-T_end = [p @ Binv for p in T_cart]
+# now we convert every of those shifts back into fractional coordinate
+L_frac = [p @ Binv for p in L_cart]   # -> fractional for KPOINTS
+T_frac = [p @ Binv for p in T_cart]
 
 
+# writing kpoints file
 def line(a, b, l1, l2):
     return [f"{a[0]:.4f} {a[1]:.4f} {a[2]:.4f}  {l1}",
             f"{b[0]:.4f} {b[1]:.4f} {b[2]:.4f}  {l2}", ""]
 
 npts = 30
 out = ["mass legs: longitudinal then transverse", str(npts), "line", "reciprocal"]
-out += line(L_end[0], L_end[1], "L-", "L+")   # along ŷ  -> m_l
-out += line(T_end[0], T_end[1], "T-", "T+")   # along x̂  -> m_t
+out += line(L_frac[0], L_frac[1], "L-", "L+")   # along ŷ  -> m_l
+out += line(T_frac[0], T_frac[1], "T-", "T+")   # along x̂  -> m_t
 open(f'{d}/KPOINTS.line', 'w').write("\n".join(out).rstrip() + "\n")
 
 
 '''
 # tests
+k0     = k0_cart @ Binv
 print("L midpoint (frac):", np.round((np.array(L_end[0])+L_end[1])/2, 4))
 print("T midpoint (frac):", np.round((np.array(T_end[0])+T_end[1])/2, 4))
 
