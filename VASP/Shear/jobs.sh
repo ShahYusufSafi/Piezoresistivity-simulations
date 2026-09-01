@@ -3,7 +3,9 @@ set -euo pipefail
 
 USER="ws2505"
 HOST="stud2.mpi.univie.ac.at"
-REMOTE="~/Ysafi_strian/shear"
+REMOTE="~/Ysafi_runs/Strain_Sweeps/shear"
+
+
 
 read -s -p "Password: " PASS; echo
 
@@ -29,7 +31,11 @@ vasp > log.band
 EOF
 
 # Phase 1: upload and run each strain
-for d in eps_*/; do
+for d in eps_+0.0000/; do
+    # skip phonon
+    [[ "$d" == "eps_phonon/" ]] && continue
+    echo "Processing $d"
+
     cp jobscript ${d}
     name="${d%/}"
     echo "=== $name ==="
@@ -42,10 +48,15 @@ for d in eps_*/; do
 done
 
 # Phase 2: retrieve outputs
-for d in eps_*/; do
+for d in eps_+0.0000/; do
+
+    # skip phonon
+    [[ "$d" == "eps_phonon/" ]] && continue
+    echo "Processing $d"
+
     name="${d%/}"
     echo "=== retrieving $name ==="
-    for f in OUTCAR OSZICAR vasprun.xml CONTCAR log.relax log.scf log.band; do
+    for f in OUTCAR OSZICAR vasprun.xml CONTCAR log.relax log.scf log.band CHGCAR; do
         $SCP ${USER}@${HOST}:${REMOTE}/${name}/${f} ${d} \
             2>/dev/null || echo "  missing: ${f}"
     done

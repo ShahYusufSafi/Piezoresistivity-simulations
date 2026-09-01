@@ -3,7 +3,7 @@ set -euo pipefail
 
 USER="ws2505"
 HOST="stud2.mpi.univie.ac.at"
-REMOTE="~/Ysafi_strian/uniaxial"
+REMOTE="~/Ysafi_runs/Strain_Sweeps/uniaxial"
 
 read -s -p "Password: " PASS; echo
 

@@ -1,0 +1,6 @@
+source /etc/profile.d/modules.sh 2>/dev/null || true
+module load intel-oneapi-mkl
+cp INCAR.band INCAR
+cp KPOINTS.grid KPOINTS
+vasp > log.mass 2>&1
+grep -q "General timing" OUTCAR && echo "VASP OK" || echo "VASP FAILED"

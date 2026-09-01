@@ -27,7 +27,7 @@ fi
 cp INCAR.scf INCAR      || { echo "Missing INCAR.scf";    exit 1; }
 cp KPOINTS.mesh KPOINTS || { echo "Missing KPOINTS.mesh"; exit 1; }
 vasp > log.scf
-grep -q "reached required accuracy" log.scf || echo "WARNING: SCF not converged"
+grep -q "aborting loop because EDIFF is reached" OUTCAR || echo "WARNING: SCF not converged"
 cp OUTCAR OUTCAR.scf ; cp vasprun.xml vasprun.scf.xml     # <-- preserve before Stage C
 
 # Stage C - non-SCF bands on the k-path, reads CHGCAR

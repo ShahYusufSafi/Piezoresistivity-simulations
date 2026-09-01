@@ -1,12 +1,13 @@
 import numpy as np
 from ase.io import read, write
-import os, glob
+import os, glob, shutil
 
-EQ = '../Equilibirium_run/outputs/Yusuf'
+EQ = '../Equilibirium_run/outputs'
 atoms0 = read(f'{EQ}/POSCAR')
 cell0  = np.array(atoms0.get_cell())
 reset_dirs = True
-strains = [-0.010, -0.005, -0.002, 0.000, +0.002, +0.005, +0.010]
+#strains = [-0.010, -0.005, -0.002, 0.000, +0.002, +0.005, +0.010]
+strains = [0.000]
 
 INCAR_RELAX = """ISTART=0
 ICHARG=2
@@ -23,10 +24,11 @@ GGA=PE
 INCAR_SCF = """ISTART=0
 ICHARG=2
 ENCUT=320
+PREC=Accurate
 ISMEAR=0
 SIGMA=0.05
 ISYM=0
-EDIFF=1E-6
+EDIFF=1E-7
 LCHARG=.TRUE.
 NSW=0
 GGA=PE
@@ -34,7 +36,9 @@ GGA=PE
 INCAR_BAND = """ISTART=0
 ICHARG=11
 ENCUT=320
+PREC=Accurate
 ISMEAR=0
+SIGMA=0.05
 ISYM=0
 LORBIT=11
 GGA=PE
@@ -61,8 +65,11 @@ for eps in strains:
     d = f'eps_{eps:+.4f}'
     os.makedirs(d, exist_ok=True)
     if reset_dirs:
-        for f in glob.glob(f'{d}/*'):
-            os.remove(f)
+        for f in glob.glob(f'{d}/*'):    
+            if os.path.isdir(f):
+                shutil.rmtree(f)  # Remove directory and all its contents
+            else:
+                os.remove(f)
 
     write(f'{d}/POSCAR', a, format='vasp')
 
@@ -71,5 +78,5 @@ for eps in strains:
     open(f'{d}/INCAR.band',  'w').write(INCAR_BAND)
 
     os.system(f'cp {EQ}/POTCAR {d}/')
-    write_line_kpoints(f'{d}/KPOINTS.line', npts=40)
+    write_line_kpoints(f'{d}/KPOINTS.line', npts=100)
     open(f'{d}/KPOINTS.mesh', 'w').write("auto\n0\nGamma\n8 8 8\n0 0 0\n")

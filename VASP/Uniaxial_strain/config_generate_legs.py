@@ -2,77 +2,20 @@ import numpy as np
 from ase.io import read, write
 import os, glob
 
-# ============================================================================
-#  mass_eps0 — effective-mass validation run (UNSTRAINED Si)
-#
-#  PURPOSE
-#  -------
-#  Extract the longitudinal (m_l) and transverse (m_t) effective masses of the
-#  Si conduction-band Delta-valley from first principles, and validate them
-#  against literature (Hamaguchi Ch.4: m_l = 0.98 m_e, m_t = 0.19 m_e). This is
-#  a one-off validation of the whole DFT -> band -> curvature-fit workflow BEFORE
-#  it is applied to the strained eps_* sweep. It is NOT part of the sweep.
-#
-#  WHY A DEDICATED RUN (and why it can give BOTH masses)
-#  -----------------------------------------------------
-#  The effective mass is the curvature of E(k) at the valley minimum, and
-#  curvature is DIRECTIONAL: the ellipsoidal valley has one curvature along its
-#  axis (-> m_l) and a different one across it (-> m_t). A line-mode run only
-#  resolves curvature along the directions it actually samples. So a single line
-#  along the valley axis yields m_l alone — it contains no information about the
-#  perpendicular curvature.
-#
-#  This run therefore samples TWO perpendicular legs through the same valley
-#  centre, combined into ONE KPOINTS.line:
-#      L leg  — along the valley axis (Cartesian y-hat)  ->  m_l
-#      T leg  — perpendicular to it   (Cartesian x-hat)  ->  m_t
-#  One SCF charge density is computed once on the mesh; both legs are evaluated
-#  non-self-consistently on top of it (ICHARG=11), so no second SCF is needed —
-#  only the sampled k-points differ between the legs.
-#
-#  WHY THIS COULD NOT BE DONE "FROM THE START"
-#  -------------------------------------------
-#  The transverse leg must be centred on the valley and perpendicular to the
-#  valley AXIS — but you cannot define "perpendicular to the axis" until a first
-#  run has located that axis. The prior eps_+0.0000 run was that reconnaissance:
-#  it located the valley (and, as a by-product, gave a first m_l). Its printed
-#  valley position (k0_cart below) is the input that lets this run aim the
-#  transverse leg correctly. Locate first, then sample perpendicular.
-#
-#  THE ONE SUBTLE TRAP (Cartesian vs fractional)
-#  ---------------------------------------------
-#  A step written in FRACTIONAL coordinates (e.g. [0, delta, 0]) is NOT
-#  perpendicular in real space, because the FCC reciprocal basis is
-#  non-orthogonal. Such a "perpendicular" leg silently re-samples the valley
-#  axis and returns m_l TWICE. The fix, used below: define the leg directions in
-#  CARTESIAN space (y-hat, x-hat), then map to fractional via B^-1 for the
-#  KPOINTS file. The commented tests at the bottom verify (a) both legs share the
-#  valley centre as midpoint and (b) cos(angle between legs) ~ 0.
-#
-#  STAGED INCARs
-#  -------------
-#  INCAR.scf  : self-consistent on the uniform mesh -> writes CHGCAR.
-#  INCAR.band : non-SCF (ICHARG=11) on KPOINTS.line, reads that CHGCAR. A cold
-#               ICHARG=11 with no CHGCAR gives unconverged, wrong eigenvalues.
-#
-#  OUTPUT / CROSS-CHECK
-#  --------------------
-#  The L leg reproduces m_l independently of eps_+0.0000 — if the two agree, the
-#  two runs are sampling equivalent <100> valleys consistently and the leg
-#  geometry is trustworthy for m_t. mass_eps0 is then the self-contained source
-#  of truth for both masses (one valley, one consistent frame).
-# ============================================================================
+
+from pymatgen.io.vasp import BSVasprun
+from pymatgen.electronic_structure.core import Spin
 
 
 
 EQ = './eps_+0.0000'
 atoms0 = read(f'{EQ}/POSCAR')
 
-d = 'mass_eps0'          # dedicated one-off, NOT part of the strain sweep
+d = 'mass_eps0'          # directory to write files
 os.makedirs(d, exist_ok=True)
 
 
-reset_dirs = True
+reset_dirs = False
 if reset_dirs:
     for f in glob.glob(f'{d}/*'):
         os.remove(f)
@@ -84,26 +27,44 @@ os.system(f'cp {EQ}/INCAR.band {d}')
 os.system(f'cp {EQ}/KPOINTS.mesh {d}')
 os.system(f'cp {EQ}/POTCAR {d}')
 
+delta   = 0.039                         #  sampling half-width in Ang^-1: how far we step off k0 to feel the curvature.
 
 recip = atoms0.cell.reciprocal() * 2*np.pi # frac -> cart
 B    = np.array(recip)          
 Binv = np.linalg.inv(B)         # cart -> frac (we use this map to convert back to fracrtional coordinates)
 
-k0_cart = np.array([0.0, 0.9768, 0.0])   # valley center, from uniaxial.ipynb
-delta   = 0.05                            #  sampling half-width in Ang^-1: how far we step off k0 to feel the curvature.
+# We first find the valley minimum
+bs = BSVasprun(f'{EQ}/vasprun.band.xml').get_band_structure(
+    kpoints_filename=f'{EQ}/kpoints.line'
+    )
+cbm_ind = bs.get_cbm()["band_index"][Spin.up][0]
+E = bs.bands[Spin.up][cbm_ind] - bs.get_cbm()["energy"]
 
+E_min_ind = np.argmin(E)
+
+# now we find that index's kpoint in frac -> cartesian
+k_frac = bs.kpoints[E_min_ind].frac_coords
+k_cart = np.round(bs.structure.lattice.reciprocal_lattice.get_cartesian_coords(k_frac), 4) # in A^-1
+
+
+# Let's ensure we are at CBM of Si (0.85 of the way between X and gamma)
+a_lat = np.linalg.norm(atoms0.cell[0]) * np.sqrt(2)
+k0 = np.linalg.norm(k_cart) / (2 * np.pi/a_lat)
+assert abs(k0 - 0.85) < 1e-2, f"Not at Δ minimum: k0={k0:.4f}"
+
+#k0_cart = np.array([0.0, 0.9768, 0.0])   # valley center, from uniaxial.ipynb
 # We build 2 orthogonal vectors
-long_dir = np.array([0.0, 1.0, 0.0])
-perp_dir = np.array([1.0, 0.0, 0.0])
+par_dir = np.array([1.0, 0.0, 0.0])
+perp_dir = np.array([0.0, 1.0, 0.0])
 
 # Now we shift the k0 to the left-right with vector parallel to it, and up-down with vector prependicular to it (because k0 is in (0,1,0) direction) 
-L_cart = [k0_cart - delta*long_dir, k0_cart + delta*long_dir]
-T_cart = [k0_cart - delta*perp_dir, k0_cart + delta*perp_dir]
+L_cart = [k_cart - delta*par_dir, k_cart + delta*par_dir]
+T_cart = [k_cart - delta*perp_dir, k_cart + delta*perp_dir]
+
 
 # now we convert every of those shifts back into fractional coordinate
 L_frac = [p @ Binv for p in L_cart]   # -> fractional for KPOINTS
 T_frac = [p @ Binv for p in T_cart]
-
 
 # writing kpoints file
 def line(a, b, l1, l2):

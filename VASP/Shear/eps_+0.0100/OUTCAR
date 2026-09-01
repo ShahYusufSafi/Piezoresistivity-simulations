@@ -1,6 +1,6 @@
  vasp.6.3.0 20Jan22 (build Mar 29 2022 17:59:55) complex                        
   
- executed on           IFC91_ompi date 2026.06.03  12:48:07
+ executed on           IFC91_ompi date 2026.08.27  14:54:14
  running on    1 total cores
  distrk:  each k-point on    1 cores,    1 groups
  distr:  one band on NCORE=   1 cores,    1 groups
@@ -13,6 +13,7 @@
    ISTART = 0
    ICHARG = 11
    ENCUT = 320
+   PREC = Accurate
    ISMEAR = 0
    SIGMA = 0.05
    ISYM = 0
@@ -316,21 +317,21 @@ Interpolating k-points between supplied coordinates.
    k-points           NKPTS =     80   k-points in BZ     NKDIM =     80   number of bands    NBANDS=      8
    number of dos      NEDOS =    301   number of ions     NIONS =      2
    non local maximal  LDIM  =      4   non local SUM 2l+1 LMDIM =      8
-   total plane-waves  NPLWV =   5832
-   max r-space proj   IRMAX =      1   max aug-charges    IRDMAX=   5072
-   dimension x,y,z NGX =    18 NGY =   18 NGZ =   18
-   dimension x,y,z NGXF=    36 NGYF=   36 NGZF=   36
-   support grid    NGXF=    36 NGYF=   36 NGZF=   36
+   total plane-waves  NPLWV =  13824
+   max r-space proj   IRMAX =      1   max aug-charges    IRDMAX=  11749
+   dimension x,y,z NGX =    24 NGY =   24 NGZ =   24
+   dimension x,y,z NGXF=    48 NGYF=   48 NGZF=   48
+   support grid    NGXF=    48 NGYF=   48 NGZF=   48
    ions per type =               2
-   NGX,Y,Z   is equivalent  to a cutoff of   7.72,  7.72,  7.72 a.u.
-   NGXF,Y,Z  is equivalent  to a cutoff of  15.43, 15.43, 15.43 a.u.
+   NGX,Y,Z   is equivalent  to a cutoff of  10.29, 10.29, 10.29 a.u.
+   NGXF,Y,Z  is equivalent  to a cutoff of  20.58, 20.58, 20.58 a.u.
 
  SYSTEM =  unknown system                          
  POSCAR =  Si                                      
 
  Startparameter for this run:
    NWRITE =      2    write-flag & timer
-   PREC   = normal    normal or accurate (medium, high low for compatibility)
+   PREC   = accura    normal or accurate (medium, high low for compatibility)
    ISTART =      0    job   : 0-new  1-cont  2-samecut
    ICHARG =     11    charge: 1-file 2-atom 10-const
    ISPIN  =      1    spin polarized calculation?
@@ -772,26 +773,26 @@ Interpolating k-points between supplied coordinates.
     minimum data exchange during FFTs selected (reduces bandwidth)
 
 
- total amount of memory used by VASP MPI-rank0    42609. kBytes
+ total amount of memory used by VASP MPI-rank0    48307. kBytes
 =======================================================================
 
    base      :      30000. kBytes
    nonl-proj :       2746. kBytes
-   fftplans  :       1676. kBytes
-   grid      :       2560. kBytes
+   fftplans  :       3916. kBytes
+   grid      :       6018. kBytes
    one-center:          6. kBytes
    wavefun   :       5621. kBytes
  
      INWAV:  cpu time      0.0000: real time      0.0000
  initial charge density was supplied:
- number of electron       7.9999996 magnetization 
+ number of electron       7.9999999 magnetization 
  keeping initial charge density in first step
 
 
 --------------------------------------------------------------------------------------------------------
 
 
- Maximum index for augmentation-charges         4732 (set IRDMAX)
+ Maximum index for augmentation-charges        11206 (set IRDMAX)
 
 
 --------------------------------------------------------------------------------------------------------
@@ -801,40 +802,40 @@ Interpolating k-points between supplied coordinates.
  Maximum number of real-space cells 3x 3x 3
  Maximum number of reciprocal cells 3x 3x 3
 
-    FEWALD:  cpu time      0.0013: real time      0.0013
+    FEWALD:  cpu time      0.0014: real time      0.0014
 
 
 --------------------------------------- Iteration      1(   1)  ---------------------------------------
 
 
-    POTLOK:  cpu time      0.0197: real time      0.0197
-    SETDIJ:  cpu time      0.0026: real time      0.0026
-     EDDAV:  cpu time      0.4309: real time      0.4309
+    POTLOK:  cpu time      0.0449: real time      0.0449
+    SETDIJ:  cpu time      0.0040: real time      0.0040
+     EDDAV:  cpu time      0.8812: real time      0.8813
        DOS:  cpu time      0.0018: real time      0.0018
     --------------------------------------------
-      LOOP:  cpu time      0.4550: real time      0.4550
+      LOOP:  cpu time      0.9318: real time      0.9319
 
  eigenvalue-minimisations  :  1280
- total energy-change (2. order) : 0.9453646E+01  (-0.2577215E+03)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) : 0.9453855E+01  (-0.2577272E+03)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
-  entropy T*S    EENTRO =        -0.00194564
-  eigenvalues    EBANDS =        26.47968673
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
+  entropy T*S    EENTRO =        -0.00194589
+  eigenvalues    EBANDS =        26.47996922
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =         9.45364562 eV
+  free energy    TOTEN  =         9.45385500 eV
 
-  energy without entropy =        9.45559126  energy(sigma->0) =        9.45461844
+  energy without entropy =        9.45580089  energy(sigma->0) =        9.45482795
 
 
 --------------------------------------------------------------------------------------------------------
@@ -845,32 +846,32 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------- Iteration      1(   2)  ---------------------------------------
 
 
-     EDDAV:  cpu time      0.6345: real time      0.6345
+     EDDAV:  cpu time      1.2603: real time      1.2603
        DOS:  cpu time      0.0010: real time      0.0010
     --------------------------------------------
-      LOOP:  cpu time      0.6354: real time      0.6355
+      LOOP:  cpu time      1.2613: real time      1.2613
 
  eigenvalue-minimisations  :  2072
- total energy-change (2. order) :-0.1454713E+02  (-0.1385245E+02)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) :-0.1454733E+02  (-0.1385262E+02)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
   entropy T*S    EENTRO =        -0.00000000
-  eigenvalues    EBANDS =        11.93061502
+  eigenvalues    EBANDS =        11.93069227
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =        -5.09348045 eV
+  free energy    TOTEN  =        -5.09347605 eV
 
-  energy without entropy =       -5.09348045  energy(sigma->0) =       -5.09348045
+  energy without entropy =       -5.09347605  energy(sigma->0) =       -5.09347605
 
 
 --------------------------------------------------------------------------------------------------------
@@ -881,32 +882,32 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------- Iteration      1(   3)  ---------------------------------------
 
 
-     EDDAV:  cpu time      0.5339: real time      0.5339
-       DOS:  cpu time      0.0009: real time      0.0009
+     EDDAV:  cpu time      1.0714: real time      1.0716
+       DOS:  cpu time      0.0010: real time      0.0010
     --------------------------------------------
-      LOOP:  cpu time      0.5348: real time      0.5348
+      LOOP:  cpu time      1.0724: real time      1.0725
 
  eigenvalue-minimisations  :  1680
- total energy-change (2. order) :-0.1823567E+00  (-0.1823567E+00)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) :-0.1823580E+00  (-0.1823580E+00)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
   entropy T*S    EENTRO =        -0.00000000
-  eigenvalues    EBANDS =        11.74825833
+  eigenvalues    EBANDS =        11.74833430
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =        -5.27583714 eV
+  free energy    TOTEN  =        -5.27583402 eV
 
-  energy without entropy =       -5.27583714  energy(sigma->0) =       -5.27583714
+  energy without entropy =       -5.27583402  energy(sigma->0) =       -5.27583402
 
 
 --------------------------------------------------------------------------------------------------------
@@ -917,32 +918,32 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------- Iteration      1(   4)  ---------------------------------------
 
 
-     EDDAV:  cpu time      0.6226: real time      0.6227
+     EDDAV:  cpu time      1.2622: real time      1.2622
        DOS:  cpu time      0.0010: real time      0.0010
     --------------------------------------------
-      LOOP:  cpu time      0.6236: real time      0.6237
+      LOOP:  cpu time      1.2632: real time      1.2632
 
  eigenvalue-minimisations  :  2072
- total energy-change (2. order) :-0.6616772E-03  (-0.6616771E-03)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) :-0.6615959E-03  (-0.6615958E-03)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
   entropy T*S    EENTRO =        -0.00000000
-  eigenvalues    EBANDS =        11.74759665
+  eigenvalues    EBANDS =        11.74767271
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =        -5.27649882 eV
+  free energy    TOTEN  =        -5.27649562 eV
 
-  energy without entropy =       -5.27649882  energy(sigma->0) =       -5.27649882
+  energy without entropy =       -5.27649562  energy(sigma->0) =       -5.27649562
 
 
 --------------------------------------------------------------------------------------------------------
@@ -953,32 +954,32 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------- Iteration      1(   5)  ---------------------------------------
 
 
-     EDDAV:  cpu time      0.5371: real time      0.5371
-       DOS:  cpu time      0.0009: real time      0.0009
+     EDDAV:  cpu time      1.0702: real time      1.0703
+       DOS:  cpu time      0.0008: real time      0.0008
     --------------------------------------------
-      LOOP:  cpu time      0.5379: real time      0.5379
+      LOOP:  cpu time      1.0710: real time      1.0711
 
  eigenvalue-minimisations  :  1680
- total energy-change (2. order) :-0.1872486E-05  (-0.1872098E-05)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) :-0.1872213E-05  (-0.1871825E-05)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
   entropy T*S    EENTRO =        -0.00000000
-  eigenvalues    EBANDS =        11.74759478
+  eigenvalues    EBANDS =        11.74767084
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =        -5.27650069 eV
+  free energy    TOTEN  =        -5.27649749 eV
 
-  energy without entropy =       -5.27650069  energy(sigma->0) =       -5.27650069
+  energy without entropy =       -5.27649749  energy(sigma->0) =       -5.27649749
 
 
 --------------------------------------------------------------------------------------------------------
@@ -989,32 +990,32 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------- Iteration      1(   6)  ---------------------------------------
 
 
-     EDDAV:  cpu time      0.4712: real time      0.4712
+     EDDAV:  cpu time      0.9457: real time      0.9457
        DOS:  cpu time      0.0010: real time      0.0010
     --------------------------------------------
-      LOOP:  cpu time      0.4723: real time      0.4722
+      LOOP:  cpu time      0.9467: real time      0.9467
 
  eigenvalue-minimisations  :  1408
- total energy-change (2. order) :-0.1774015E-07  (-0.1829108E-07)
- number of electron       7.9999996 magnetization 
- augmentation part        7.9999996 magnetization 
+ total energy-change (2. order) :-0.1773898E-07  (-0.1829045E-07)
+ number of electron       7.9999999 magnetization 
+ augmentation part        7.9999999 magnetization 
 
  Free energy of the ion-electron system (eV)
   ---------------------------------------------------
   alpha Z        PSCENC =         3.36515008
   Ewald energy   TEWEN  =      -228.59387428
-  -Hartree energ DENC   =       -14.92786148
+  -Hartree energ DENC   =       -14.92792434
   -exchange      EXHF   =         0.00000000
-  -V(xc)+E(xc)   XCENC  =       -17.95900181
-  PAW double counting   =       893.72363205     -858.76280690
+  -V(xc)+E(xc)   XCENC  =       -17.95902260
+  PAW double counting   =       893.78647485     -858.82563889
   entropy T*S    EENTRO =        -0.00000000
-  eigenvalues    EBANDS =        11.74759476
+  eigenvalues    EBANDS =        11.74767082
   atomic energy  EATOM  =       206.13066687
   Solvation  Ediel_sol  =         0.00000000
   ---------------------------------------------------
-  free energy    TOTEN  =        -5.27650071 eV
+  free energy    TOTEN  =        -5.27649751 eV
 
-  energy without entropy =       -5.27650071  energy(sigma->0) =       -5.27650071
+  energy without entropy =       -5.27649751  energy(sigma->0) =       -5.27649751
 
 
 --------------------------------------------------------------------------------------------------------
@@ -1029,9 +1030,9 @@ Interpolating k-points between supplied coordinates.
  
  
  
- E-fermi :   6.1556     XC(G=0):  -9.4120     alpha+bet :-11.9881
+ E-fermi :   6.1557     XC(G=0):  -9.4119     alpha+bet :-11.9881
 
- Fermi energy:         6.1556402369
+ Fermi energy:         6.1556528454
 
  k-point     1 :       0.0000    0.5000    0.5000
   band No.  band energies     occupation 
@@ -1039,10 +1040,10 @@ Interpolating k-points between supplied coordinates.
       2      -1.9404      2.00000
       3       2.8598      2.00000
       4       3.1164      2.00000
-      5       6.4026      0.00000
+      5       6.4027      0.00000
       6       6.6937      0.00000
       7      15.8623      0.00000
-      8      15.9689      0.00000
+      8      15.9690      0.00000
 
  k-point     2 :       0.0000    0.4872    0.4872
   band No.  band energies     occupation 
@@ -1051,7 +1052,7 @@ Interpolating k-points between supplied coordinates.
       3       2.8624      2.00000
       4       3.1190      2.00000
       5       6.3996      0.00000
-      6       6.7045      0.00000
+      6       6.7046      0.00000
       7      15.7983      0.00000
       8      15.8923      0.00000
 
@@ -1086,14 +1087,14 @@ Interpolating k-points between supplied coordinates.
       5       6.3769      0.00000
       6       6.8442      0.00000
       7      15.2212      0.00000
-      8      15.2582      0.00000
+      8      15.2583      0.00000
 
  k-point     6 :       0.0000    0.4359    0.4359
   band No.  band energies     occupation 
       1      -2.9260      2.00000
       2      -0.9449      2.00000
       3       2.9248      2.00000
-      4       3.1809      2.00000
+      4       3.1810      2.00000
       5       6.3741      0.00000
       6       6.9172      0.00000
       7      14.9927      0.00000
@@ -1113,13 +1114,13 @@ Interpolating k-points between supplied coordinates.
  k-point     8 :       0.0000    0.4103    0.4103
   band No.  band energies     occupation 
       1      -3.2766      2.00000
-      2      -0.5129      2.00000
+      2      -0.5128      2.00000
       3       2.9870      2.00000
       4       3.2427      2.00000
       5       6.3838      0.00000
       6       7.0943      0.00000
-      7      14.5231      0.00000
-      8      14.5253      0.00000
+      7      14.5232      0.00000
+      8      14.5254      0.00000
 
  k-point     9 :       0.0000    0.3974    0.3974
   band No.  band energies     occupation 
@@ -1171,7 +1172,7 @@ Interpolating k-points between supplied coordinates.
       2       0.6019      2.00000
       3       3.2320      2.00000
       4       3.4851      2.00000
-      5       6.5117      0.00000
+      5       6.5118      0.00000
       6       7.6981      0.00000
       7      13.2947      0.00000
       8      13.3519      0.00000
@@ -1182,21 +1183,21 @@ Interpolating k-points between supplied coordinates.
       2       0.8292      2.00000
       3       3.2961      2.00000
       4       3.5483      2.00000
-      5       6.5551      0.00000
+      5       6.5552      0.00000
       6       7.8450      0.00000
       7      13.0518      0.00000
       8      13.1200      0.00000
 
  k-point    15 :       0.0000    0.3205    0.3205
   band No.  band energies     occupation 
-      1      -4.3617      2.00000
+      1      -4.3616      2.00000
       2       1.0574      2.00000
       3       3.3650      2.00000
       4       3.6163      2.00000
       5       6.6043      0.00000
-      6       8.0000      0.00000
+      6       8.0001      0.00000
       7      12.8106      0.00000
-      8      12.8887      0.00000
+      8      12.8888      0.00000
 
  k-point    16 :       0.0000    0.3077    0.3077
   band No.  band energies     occupation 
@@ -1204,7 +1205,7 @@ Interpolating k-points between supplied coordinates.
       2       1.2863      2.00000
       3       3.4387      2.00000
       4       3.6890      2.00000
-      5       6.6590      0.00000
+      5       6.6591      0.00000
       6       8.1630      0.00000
       7      12.5711      0.00000
       8      12.6593      0.00000
@@ -1227,9 +1228,9 @@ Interpolating k-points between supplied coordinates.
       3       3.6005      2.00000
       4       3.8483      2.00000
       5       6.7844      0.00000
-      6       8.5109      0.00000
+      6       8.5110      0.00000
       7      12.0974      0.00000
-      8      12.2050      0.00000
+      8      12.2051      0.00000
 
  k-point    19 :       0.0000    0.2692    0.2692
   band No.  band energies     occupation 
@@ -1239,7 +1240,7 @@ Interpolating k-points between supplied coordinates.
       4       3.9345      2.00000
       5       6.8544      0.00000
       6       8.6946      0.00000
-      7      11.8637      0.00000
+      7      11.8638      0.00000
       8      11.9801      0.00000
 
  k-point    20 :       0.0000    0.2564    0.2564
@@ -1273,7 +1274,7 @@ Interpolating k-points between supplied coordinates.
       5       7.0908      0.00000
       6       9.2705      0.00000
       7      11.1775      0.00000
-      8      11.3173      0.00000
+      8      11.3174      0.00000
 
  k-point    23 :       0.0000    0.2179    0.2179
   band No.  band energies     occupation 
@@ -1294,7 +1295,7 @@ Interpolating k-points between supplied coordinates.
       4       4.4267      2.00000
       5       7.2661      0.00000
       6       9.6497      0.00000
-      7      10.7407      0.00000
+      7      10.7408      0.00000
       8      10.8865      0.00000
 
  k-point    25 :       0.0000    0.1923    0.1923
@@ -1313,7 +1314,7 @@ Interpolating k-points between supplied coordinates.
       1      -5.5658      2.00000
       2       3.5665      2.00000
       3       4.4225      2.00000
-      4       4.6476      2.00000
+      4       4.6477      2.00000
       5       7.4513      0.00000
       6       9.9428      0.00000
       7      10.3697      0.00000
@@ -1372,14 +1373,14 @@ Interpolating k-points between supplied coordinates.
       5       7.9115      0.00000
       6       9.2478      0.00000
       7       9.4985      0.00000
-      8      10.2679      0.00000
+      8      10.2680      0.00000
 
  k-point    32 :       0.0000    0.1026    0.1026
   band No.  band energies     occupation 
       1      -5.9434      2.00000
       2       4.8113      2.00000
-      3       5.1778      2.00000
-      4       5.3470      2.00000
+      3       5.1779      2.00000
+      4       5.3471      2.00000
       5       7.9925      0.00000
       6       9.0752      0.00000
       7       9.3248      0.00000
@@ -1398,7 +1399,7 @@ Interpolating k-points between supplied coordinates.
 
  k-point    34 :       0.0000    0.0769    0.0769
   band No.  band energies     occupation 
-      1      -6.0239      2.00000
+      1      -6.0238      2.00000
       2       5.1494      2.00000
       3       5.4393      2.00000
       4       5.5667      2.00000
@@ -1416,7 +1417,7 @@ Interpolating k-points between supplied coordinates.
       5       8.1621      0.00000
       6       8.6551      0.00000
       7       8.8729      0.00000
-      8       9.7260      0.00000
+      8       9.7261      0.00000
 
  k-point    36 :       0.0000    0.0513    0.0513
   band No.  band energies     occupation 
@@ -1432,7 +1433,7 @@ Interpolating k-points between supplied coordinates.
  k-point    37 :       0.0000    0.0385    0.0385
   band No.  band energies     occupation 
       1      -6.1016      2.00000
-      2       5.5122      2.00000
+      2       5.5121      2.00000
       3       5.7856      2.00000
       4       5.8294      2.00000
       5       8.1521      0.00000
@@ -1456,9 +1457,9 @@ Interpolating k-points between supplied coordinates.
       1      -6.1246      2.00000
       2       5.6304      2.00000
       3       5.9167      2.00000
-      4       5.9220      2.00000
-      5       8.0878      0.00000
-      6       8.5186      0.00000
+      4       5.9221      2.00000
+      5       8.0879      0.00000
+      6       8.5185      0.00000
       7       8.5346      0.00000
       8       9.3446      0.00000
 
@@ -1489,9 +1490,9 @@ Interpolating k-points between supplied coordinates.
       1      -6.1246      2.00000
       2       5.6304      2.00000
       3       5.9167      2.00000
-      4       5.9220      2.00000
-      5       8.0878      0.00000
-      6       8.5186      0.00000
+      4       5.9221      2.00000
+      5       8.0879      0.00000
+      6       8.5185      0.00000
       7       8.5346      0.00000
       8       9.3446      0.00000
 
@@ -1509,7 +1510,7 @@ Interpolating k-points between supplied coordinates.
  k-point    44 :       0.0385    0.0000    0.0385
   band No.  band energies     occupation 
       1      -6.1016      2.00000
-      2       5.5122      2.00000
+      2       5.5121      2.00000
       3       5.7856      2.00000
       4       5.8294      2.00000
       5       8.1521      0.00000
@@ -1537,11 +1538,11 @@ Interpolating k-points between supplied coordinates.
       5       8.1621      0.00000
       6       8.6551      0.00000
       7       8.8729      0.00000
-      8       9.7260      0.00000
+      8       9.7261      0.00000
 
  k-point    47 :       0.0769    0.0000    0.0769
   band No.  band energies     occupation 
-      1      -6.0239      2.00000
+      1      -6.0238      2.00000
       2       5.1494      2.00000
       3       5.4393      2.00000
       4       5.5667      2.00000
@@ -1565,8 +1566,8 @@ Interpolating k-points between supplied coordinates.
   band No.  band energies     occupation 
       1      -5.9434      2.00000
       2       4.8113      2.00000
-      3       5.1778      2.00000
-      4       5.3470      2.00000
+      3       5.1779      2.00000
+      4       5.3471      2.00000
       5       7.9925      0.00000
       6       9.0752      0.00000
       7       9.3248      0.00000
@@ -1581,7 +1582,7 @@ Interpolating k-points between supplied coordinates.
       5       7.9115      0.00000
       6       9.2478      0.00000
       7       9.4985      0.00000
-      8      10.2679      0.00000
+      8      10.2680      0.00000
 
  k-point    51 :       0.1282    0.0000    0.1282
   band No.  band energies     occupation 
@@ -1632,7 +1633,7 @@ Interpolating k-points between supplied coordinates.
       1      -5.5658      2.00000
       2       3.5665      2.00000
       3       4.4225      2.00000
-      4       4.6476      2.00000
+      4       4.6477      2.00000
       5       7.4513      0.00000
       6       9.9428      0.00000
       7      10.3697      0.00000
@@ -1657,7 +1658,7 @@ Interpolating k-points between supplied coordinates.
       4       4.4267      2.00000
       5       7.2661      0.00000
       6       9.6497      0.00000
-      7      10.7407      0.00000
+      7      10.7408      0.00000
       8      10.8865      0.00000
 
  k-point    58 :       0.2179    0.0000    0.2179
@@ -1680,7 +1681,7 @@ Interpolating k-points between supplied coordinates.
       5       7.0908      0.00000
       6       9.2705      0.00000
       7      11.1775      0.00000
-      8      11.3174      0.00000
+      8      11.3175      0.00000
 
  k-point    60 :       0.2436    0.0000    0.2436
   band No.  band energies     occupation 
@@ -1712,7 +1713,7 @@ Interpolating k-points between supplied coordinates.
       4       3.9345      2.00000
       5       6.8544      0.00000
       6       8.6946      0.00000
-      7      11.8637      0.00000
+      7      11.8638      0.00000
       8      11.9801      0.00000
 
  k-point    63 :       0.2821    0.0000    0.2821
@@ -1722,7 +1723,7 @@ Interpolating k-points between supplied coordinates.
       3       3.6005      2.00000
       4       3.8483      2.00000
       5       6.7844      0.00000
-      6       8.5109      0.00000
+      6       8.5110      0.00000
       7      12.0974      0.00000
       8      12.2051      0.00000
 
@@ -1743,19 +1744,19 @@ Interpolating k-points between supplied coordinates.
       2       1.2863      2.00000
       3       3.4387      2.00000
       4       3.6890      2.00000
-      5       6.6590      0.00000
+      5       6.6591      0.00000
       6       8.1630      0.00000
       7      12.5711      0.00000
       8      12.6593      0.00000
 
  k-point    66 :       0.3205    0.0000    0.3205
   band No.  band energies     occupation 
-      1      -4.3617      2.00000
+      1      -4.3616      2.00000
       2       1.0574      2.00000
       3       3.3650      2.00000
       4       3.6163      2.00000
       5       6.6043      0.00000
-      6       8.0000      0.00000
+      6       8.0001      0.00000
       7      12.8106      0.00000
       8      12.8888      0.00000
 
@@ -1765,7 +1766,7 @@ Interpolating k-points between supplied coordinates.
       2       0.8292      2.00000
       3       3.2961      2.00000
       4       3.5483      2.00000
-      5       6.5551      0.00000
+      5       6.5552      0.00000
       6       7.8450      0.00000
       7      13.0518      0.00000
       8      13.1200      0.00000
@@ -1776,7 +1777,7 @@ Interpolating k-points between supplied coordinates.
       2       0.6019      2.00000
       3       3.2320      2.00000
       4       3.4851      2.00000
-      5       6.5117      0.00000
+      5       6.5118      0.00000
       6       7.6981      0.00000
       7      13.2947      0.00000
       8      13.3519      0.00000
@@ -1789,7 +1790,7 @@ Interpolating k-points between supplied coordinates.
       4       3.4267      2.00000
       5       6.4741      0.00000
       6       7.5597      0.00000
-      7      13.5383      0.00000
+      7      13.5384      0.00000
       8      13.5848      0.00000
 
  k-point    70 :       0.3718    0.0000    0.3718
@@ -1828,13 +1829,13 @@ Interpolating k-points between supplied coordinates.
  k-point    73 :       0.4103    0.0000    0.4103
   band No.  band energies     occupation 
       1      -3.2766      2.00000
-      2      -0.5129      2.00000
+      2      -0.5128      2.00000
       3       2.9870      2.00000
       4       3.2427      2.00000
       5       6.3838      0.00000
       6       7.0943      0.00000
-      7      14.5231      0.00000
-      8      14.5253      0.00000
+      7      14.5232      0.00000
+      8      14.5254      0.00000
 
  k-point    74 :       0.4231    0.0000    0.4231
   band No.  band energies     occupation 
@@ -1845,14 +1846,14 @@ Interpolating k-points between supplied coordinates.
       5       6.3761      0.00000
       6       7.0008      0.00000
       7      14.7597      0.00000
-      8      14.7700      0.00000
+      8      14.7701      0.00000
 
  k-point    75 :       0.4359    0.0000    0.4359
   band No.  band energies     occupation 
       1      -2.9260      2.00000
       2      -0.9449      2.00000
       3       2.9248      2.00000
-      4       3.1809      2.00000
+      4       3.1810      2.00000
       5       6.3741      0.00000
       6       6.9172      0.00000
       7      14.9927      0.00000
@@ -1898,7 +1899,7 @@ Interpolating k-points between supplied coordinates.
       3       2.8624      2.00000
       4       3.1190      2.00000
       5       6.3996      0.00000
-      6       6.7045      0.00000
+      6       6.7046      0.00000
       7      15.7983      0.00000
       8      15.8927      0.00000
 
@@ -1908,7 +1909,7 @@ Interpolating k-points between supplied coordinates.
       2      -1.9404      2.00000
       3       2.8598      2.00000
       4       3.1164      2.00000
-      5       6.4026      0.00000
+      5       6.4027      0.00000
       6       6.6937      0.00000
       7      15.8643      0.00000
       8      15.9689      0.00000
@@ -1956,29 +1957,29 @@ Interpolating k-points between supplied coordinates.
 --------------------------------------------------
 tot          1.353   2.132   0.000   3.485
  
-    CHARGE:  cpu time      0.0361: real time      0.0361
-    FORLOC:  cpu time      0.0013: real time      0.0013
-    FORNL :  cpu time      0.0395: real time      0.0395
-    STRESS:  cpu time      0.2232: real time      0.2232
-    FORCOR:  cpu time      0.0192: real time      0.0192
-    FORHAR:  cpu time      0.0040: real time      0.0040
-    OFIELD:  cpu time      0.0000: real time      0.0000
+    CHARGE:  cpu time      0.0797: real time      0.0797
+    FORLOC:  cpu time      0.0029: real time      0.0029
+    FORNL :  cpu time      0.0475: real time      0.0475
+    STRESS:  cpu time      0.2548: real time      0.2550
+    FORCOR:  cpu time      0.0468: real time      0.0468
+    FORHAR:  cpu time      0.0095: real time      0.0095
+    OFIELD:  cpu time      0.0001: real time      0.0001
 
   FORCE on cell =-STRESS in cart. coord.  units (eV):
   Direction    XX          YY          ZZ          XY          YZ          ZX
   --------------------------------------------------------------------------------------
   Alpha Z     3.36515     3.36515     3.36515
   Ewald     -76.19802   -76.19802   -76.19802    -0.59652    -0.59654    -0.59654
-  Hartree     6.27089     6.27089     6.06304    -0.35908    -0.38337    -0.38337
-  E(xc)     -25.39187   -25.39187   -25.73289     0.00935     0.02064     0.02064
-  Local     -29.83169   -29.83170   -36.31095     1.13696     1.33895     1.33895
-  n-local    76.23402    76.23403    81.00954    -0.12400    -0.29339    -0.29338
-  augment   -10.92078   -10.92078   -11.59483     0.03210     0.03811     0.03810
-  Kinetic    62.44149    62.44149    67.79935    -0.28236    -0.16959    -0.16959
+  Hartree     6.27088     6.27088     6.06303    -0.35905    -0.38334    -0.38334
+  E(xc)     -25.39186   -25.39187   -25.73289     0.00935     0.02063     0.02063
+  Local     -29.83166   -29.83167   -36.31093     1.13690     1.33886     1.33886
+  n-local    76.23396    76.23398    81.00947    -0.12400    -0.29340    -0.29339
+  augment   -10.92063   -10.92063   -11.59469     0.03206     0.03807     0.03806
+  Kinetic    62.44145    62.44146    67.79930    -0.28243    -0.16966    -0.16965
   Fock        0.00000     0.00000     0.00000     0.00000     0.00000     0.00000
   -------------------------------------------------------------------------------------
-  Total       5.96920     5.96920     8.40038    -0.18355    -0.04520    -0.04519
-  in kB     239.01026   239.01022   336.35627    -7.34953    -1.80966    -1.80963
+  Total       5.96928     5.96928     8.40042    -0.18369    -0.04536    -0.04536
+  in kB     239.01356   239.01352   336.35796    -7.35513    -1.81613    -1.81611
   external pressure =      271.46 kB  Pullay stress =        0.00 kB
 
 
@@ -1998,18 +1999,18 @@ tot          1.353   2.132   0.000   3.485
  FORCES acting on ions
     electron-ion (+dipol)            ewald-force                    non-local-force                 convergence-correction
  -----------------------------------------------------------------------------------------------
-   -.213E+01 -.213E+01 -.207E+01   0.124E+01 0.124E+01 0.124E+01   0.669E+00 0.669E+00 0.647E+00   0.884E-01 0.884E-01 0.749E-01
-   0.213E+01 0.213E+01 0.207E+01   -.124E+01 -.124E+01 -.124E+01   -.669E+00 -.669E+00 -.647E+00   -.884E-01 -.884E-01 -.749E-01
+   -.213E+01 -.213E+01 -.207E+01   0.124E+01 0.124E+01 0.124E+01   0.669E+00 0.669E+00 0.646E+00   0.884E-01 0.884E-01 0.749E-01
+   0.213E+01 0.213E+01 0.207E+01   -.124E+01 -.124E+01 -.124E+01   -.669E+00 -.669E+00 -.646E+00   -.884E-01 -.884E-01 -.748E-01
  -----------------------------------------------------------------------------------------------
-   -.102E-04 -.682E-04 -.132E-03   0.000E+00 0.000E+00 0.000E+00   0.771E-05 0.397E-04 0.854E-04   0.185E-05 0.877E-05 0.152E-04
+   -.139E-04 -.747E-04 -.137E-03   0.000E+00 0.000E+00 0.000E+00   0.103E-04 0.444E-04 0.892E-04   0.138E-05 0.900E-05 0.150E-04
  
  
  POSITION                                       TOTAL-FORCE (eV/Angst)
  -----------------------------------------------------------------------------------
-      0.00699      0.00699      0.00699        -0.138837     -0.138836     -0.110028
-      1.37766      1.37766      1.37766         0.138837      0.138836      0.110028
+      0.00699      0.00699      0.00699        -0.138898     -0.138897     -0.110106
+      1.37766      1.37766      1.37766         0.138898      0.138897      0.110106
  -----------------------------------------------------------------------------------
-    total drift:                               -0.000001     -0.000020     -0.000031
+    total drift:                               -0.000002     -0.000021     -0.000033
 
 
 --------------------------------------------------------------------------------------------------------
@@ -2018,23 +2019,23 @@ tot          1.353   2.132   0.000   3.485
 
   FREE ENERGIE OF THE ION-ELECTRON SYSTEM (eV)
   ---------------------------------------------------
-  free  energy   TOTEN  =        -5.27650071 eV
+  free  energy   TOTEN  =        -5.27649751 eV
 
-  energy  without entropy=       -5.27650071  energy(sigma->0) =       -5.27650071
+  energy  without entropy=       -5.27649751  energy(sigma->0) =       -5.27649751
  
 
 
 --------------------------------------------------------------------------------------------------------
 
 
-    POTLOK:  cpu time      0.0199: real time      0.0199
+    POTLOK:  cpu time      0.0457: real time      0.0457
 
 
 --------------------------------------------------------------------------------------------------------
 
 
  writing wavefunctions
-     LOOP+:  cpu time      3.6642: real time      3.6643
+     LOOP+:  cpu time      7.1582: real time      7.1587
     4ORBIT:  cpu time      0.0000: real time      0.0000
 
 
@@ -2049,13 +2050,13 @@ tot          1.353   2.132   0.000   3.485
 tot          1.353   2.132   0.000   3.485
  
 
- total amount of memory used by VASP MPI-rank0    42609. kBytes
+ total amount of memory used by VASP MPI-rank0    48307. kBytes
 =======================================================================
 
    base      :      30000. kBytes
    nonl-proj :       2746. kBytes
-   fftplans  :       1676. kBytes
-   grid      :       2560. kBytes
+   fftplans  :       3916. kBytes
+   grid      :       6018. kBytes
    one-center:          6. kBytes
    wavefun   :       5621. kBytes
  
@@ -2064,14 +2065,14 @@ tot          1.353   2.132   0.000   3.485
  General timing and accounting informations for this job:
  ========================================================
   
-                  Total CPU time used (sec):        3.998
-                            User time (sec):        3.921
-                          System time (sec):        0.076
-                         Elapsed time (sec):        4.272
+                  Total CPU time used (sec):        7.643
+                            User time (sec):        7.514
+                          System time (sec):        0.128
+                         Elapsed time (sec):        7.934
   
-                   Maximum memory used (kb):      107392.
+                   Maximum memory used (kb):      111656.
                    Average memory used (kb):          N/A
   
-                          Minor page faults:         7451
+                          Minor page faults:        11911
                           Major page faults:            3
-                 Voluntary context switches:         1153
+                 Voluntary context switches:         1154
