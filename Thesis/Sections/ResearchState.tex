@@ -1,0 +1,42 @@
+\section{State of Research}
+
+The piezoresistive effect has been extensively investigated in both experimental and engineering contexts, 
+particularly in semiconductor-based sensors and microelectromechanical systems (MEMS) \cite{smith1954,doll2013}. 
+Early studies established the strong dependence of electrical conductivity on mechanical strain in materials such as silicon, 
+highlighting the importance of crystal structure and carrier transport in determining the sensitivity of the effect.
+
+From a materials physics perspective, piezoresistivity originates from strain-induced modifications of the electronic structure 
+and charge transport properties. Mechanical deformation can alter band structure, effective masses, and scattering mechanisms, 
+which in turn influence carrier mobility and electrical conductivity \cite{hamaguchi}. 
+These effects are well understood at the microscopic and transport levels.
+
+In practical modeling and engineering applications, however, this coupling is typically introduced in a simplified manner, 
+where the conductivity is treated as an empirical function of strain. While such approaches are effective for device design, 
+they do not provide a transparent link between microscopic transport mechanisms and macroscopic behavior.
+
+At the continuum level, partial differential equation models are widely used to describe both elasticity and electrical conduction. 
+Nevertheless, the incorporation of strain-dependent transport properties into these models is usually carried out phenomenologically, 
+without a systematic connection to the underlying physics.
+
+This reveals a gap between physically grounded transport descriptions and continuum-level modeling. 
+Bridging this gap in a computationally consistent way remains an open and relevant problem, particularly for materials and devices 
+where electromechanical coupling plays a central role.
+
+Based on these considerations, the proposed study is guided by the following research questions:
+
+\begin{itemize}
+    \item How can strain-dependent conductivity be incorporated into a consistent continuum model of electromechanical coupling?
+    \item How does mechanical deformation influence the spatial distribution of electrical potential in conductive materials?
+    \item What effects arise from the nonlinear coupling between mechanics and electrical transport?
+    \item To what extent can flexible (e.g.\ data-driven or physics-informed) approaches improve the modeling of $\sigma(\varepsilon)$?
+\end{itemize}
+
+To address these questions, the study is structured around the following components:
+
+\begin{itemize}
+    \item Physical background and modeling assumptions
+    \item Formulation of the coupled electromechanical model
+    \item Analysis of the nonlinear system
+    \item Computational methods and numerical experiments
+    \item Interpretation of results in the context of material behavior
+\end{itemize}

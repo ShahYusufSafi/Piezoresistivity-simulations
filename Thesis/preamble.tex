@@ -1,0 +1,91 @@
+%\usepackage{amsthm}
+%
+%
+%
+%% theorem like envs
+%
+%\theoremstyle{defination}
+%
+%%\newtheorem{envname}{caption}[within]
+%
+%\newtheorem{defination}{Defination}[section]
+
+
+% engineering style definitions
+
+\usepackage{mdframed}
+\usepackage{xcolor}
+\usepackage{tabularx} 
+\usepackage{booktabs}
+\usepackage{siunitx} % style
+%\usepackage[draft]{graphicx} % draft mode
+
+
+\newmdtheoremenv[
+  linewidth=0.5pt,
+  linecolor=black,
+  backgroundcolor=gray!5,
+]{definition}{Definition}[section]
+
+
+\newmdtheoremenv[
+  linewidth=0.3pt,
+  linecolor=blue,
+  backgroundcolor=blue!5,
+]{example}{Example}[section]
+
+
+\newmdtheoremenv[
+  linewidth=0.3pt,
+  linecolor=blue,
+  backgroundcolor=purple!5,
+]{proposition}{Proposition}[section]
+
+
+
+\newmdtheoremenv[
+  linewidth=0.3pt,
+  linecolor=blue,
+  backgroundcolor=black!5,
+]{theorem}{Theorem}[section]
+
+
+
+
+\newmdtheoremenv[
+  linewidth=0.1pt,
+  linecolor=blue,
+  backgroundcolor=green!9,
+]{proof}{Proof}[section]
+
+
+\newmdtheoremenv[
+  linewidth=0.1pt,
+  linecolor=blue,
+  backgroundcolor=green!5,
+]{remark}{Remark}[section]
+
+\newmdtheoremenv[
+  linewidth=0.1pt,
+  linecolor=red,
+]{RL}{Review Later}
+
+% Basic graphics
+\usepackage{graphicx}
+
+% Optional figures without errors
+\usepackage{ifthen}
+
+% Simple verbatim code blocks
+% Simple verbatim code blocks
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{codeblock}{Verbatim}{fontsize=\small,frame=single}
+
+
+
+\newcommand{\Var}{\operatorname{Var}}
+\DeclareMathOperator{\Cov}{Cov}
+
+
+
+

@@ -1,35 +1,13 @@
-# ============================================================================
-#  Uniaxial [100] strain sweep generator.
-#
-#  CHANNEL: Gamma_12 (tetragonal) + a small Gamma_1 (hydrostatic) part, since
-#  diag(1+eps,1,1) is 1/3 hydrostatic + tetragonal. Probes Xi_u via the
-#  Delta-valley splitting.
-#
-#  NO RELAXATION STAGE: for axial [100] strain the two-atom basis is frozen by
-#  symmetry (no Kleinman displacement), so affine scale_atoms=True is exact.
-#  Only the [111] shear channel needs INCAR.relax. Hence this generator writes
-#  INCAR.scf and INCAR.band but NOT INCAR.relax -> jobs.sh auto-skips Stage A.
-#
-#  DUAL-X PATH: KPOINTS.line visits X_par (along the strain axis) AND X_perp
-#  (transverse). The valley splitting lives in the DIFFERENCE between these two;
-#  a single cubic X point would hide it. At eps=0 the two must be degenerate.
-#
-#  STAGED INCARs: SCF (uniform mesh) -> CHGCAR, then non-SCF bands (ICHARG=11)
-#  on KPOINTS.line. A cold ICHARG=11 with no CHGCAR gives unconverged, wrong
-#  eigenvalues - the bug that produced the bad Xi_u.
-# ============================================================================
-
-
 import numpy as np
 from ase.io import read, write
 import os, glob
 
-EQ = '../Equilibirium_run/outputs/Yusuf'
+EQ = '../Equilibirium_run/outputs'
 atoms0 = read(f'{EQ}/POSCAR')
 cell0  = np.array(atoms0.get_cell())
 reset_dirs = True
-strains = [-0.010, -0.005, -0.002, 0.000, +0.002, +0.005, +0.010]
-
+#strains = [-0.010, -0.005, -0.002, 0.000, +0.002, +0.005, +0.010]
+strains = [0.000]
 INCAR_SCF = """ISTART=0
 ICHARG=2
 ENCUT=320
@@ -63,7 +41,7 @@ def write_line_kpoints(filepath, npts=40):
     open(filepath, "w").write("\n".join(out).rstrip() + "\n")
 
 for eps in strains:
-    M = np.diag([1+eps, 1+eps, 1+eps])          # clamped [100] uniaxial
+    M = np.diag([1+eps, 1+eps, 1+eps])          
     a = atoms0.copy()
     a.set_cell(cell0 @ M, scale_atoms=True)
 
@@ -73,7 +51,7 @@ for eps in strains:
         for f in glob.glob(f'{d}/*'):
             os.remove(f)
 
-    write(f'{d}/POSCAR', a, format='vasp')
+    write(f'{d}/POSCAR', a, format='vasp', direct=False)
 
     open(f'{d}/INCAR.scf',  'w').write(INCAR_SCF)     # no INCAR.relax for uniaxial
     open(f'{d}/INCAR.band', 'w').write(INCAR_BAND)

@@ -1,0 +1,85 @@
+\documentclass[11pt,letterpaper]{article}
+
+% Main document
+\input{meta.tex}
+\input{preamble.tex}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+
+Many sensing devices rely on transduction mechanisms that convert mechanical deformation into measurable electrical signals.
+A prominent example is the piezoresistive effect, where the electrical conductivity of a material varies under applied strain.
+
+From a materials physics perspective, this behavior originates from strain-induced modifications of the electronic structure and carrier transport properties. 
+Mechanical deformation alters band energies, effective masses, and scattering mechanisms, which in turn influence carrier mobility and electrical conductivity \cite{hamaguchi}. 
+In certain regimes, additional effects such as tunneling may also contribute to the overall response.
+
+This work develops a computational framework for modeling strain-dependent conductivity in deformable materials by connecting these physical mechanisms across scales.
+At the continuum level, the mechanical behavior is described by the equations of elasticity, while the electrical response is governed by a conductivity equation with strain-dependent coefficients. 
+This leads to a coupled system of partial differential equations of the form
+\[
+\nabla \cdot \boldsymbol{\sigma}(u) = 0, \qquad
+\nabla \cdot \left( \sigma(\varepsilon(u)) \nabla V \right) = 0,
+\]
+where $u$ denotes the displacement field, $V$ the electrical potential, and $\sigma(\varepsilon(u))$ represents an effective conductivity incorporating the influence of mechanical deformation.
+
+A central aspect of this study is the interpretation of the constitutive relation $\sigma(\varepsilon)$.
+Rather than treating it purely phenomenologically, the framework is designed so that it can be informed by transport models derived from electronic structure calculations, providing a physically motivated link between microscopic behavior and macroscopic response.
+
+From a computational perspective, the focus lies on the formulation and numerical solution of the coupled system using finite element methods.
+A baseline case with constant conductivity is first analyzed and validated, followed by the extension to spatially varying, strain-dependent conductivity.
+The framework is constructed to remain flexible, allowing the incorporation of physics-based models or data-driven approximations for $\sigma(\varepsilon)$.
+
+The proposed approach provides a consistent and extensible pathway for studying electromechanical coupling in materials.
+Potential applications include sensing technologies, flexible electronics, and structural health monitoring.
+
+\end{abstract}
+
+\tableofcontents
+
+% Sections
+\input{Sections/intro.tex}
+
+\input{Sections/Piezoresistivity.tex}
+
+\input{Sections/ContinumModel.tex}
+
+\input{Sections/FEM.tex}
+
+\input{Sections/StrainStress.tex}
+
+\input{Sections/SymmetryAnalysis.tex}
+
+\input{Sections/DPT.tex}
+
+\input{Sections/Results.tex}
+
+\input{Sections/ErrorAnalysis.tex}
+
+
+\input{Sections/problem Articulation.tex}
+
+\input{Sections/Problem Statement.tex}
+
+\input{Sections/Mathematical Model.tex}
+
+
+\input{Sections/ResearchState.tex}
+
+\input{Sections/Method.tex}
+
+\input{Sections/ParSol.tex}
+
+\input{Sections/physInfConModel.tex}
+
+\input{Sections/DefPot.tex}
+
+\input{Sections/outcome.tex}
+
+
+\clearpage
+\printbibliography
+
+\end{document}

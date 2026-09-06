@@ -1,0 +1,271 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{doll2013}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=a1ea1dc9da14ed1342351712c5ba265a}{%
+           family={Doll},
+           familyi={D\bibinitperiod},
+           given={Joseph\bibnamedelima C.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=5cea272beb3c2d074d9708e4a2f2dbc5}{%
+           family={Pruitt},
+           familyi={P\bibinitperiod},
+           given={Beth\bibnamedelima L.},
+           giveni={B\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+      }
+      \strng{namehash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{fullhash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{fullhashraw}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{bibnamehash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{authorbibnamehash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{authornamehash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{authorfullhash}{cece974c5ac97d2f961762f0455a0cd7}
+      \strng{authorfullhashraw}{cece974c5ac97d2f961762f0455a0cd7}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Piezoresistor Design and Applications}
+      \field{year}{2013}
+    \endentry
+    \entry{evans}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=0d72932a7775f85a51622d3af75ae26e}{%
+           family={Evans},
+           familyi={E\bibinitperiod},
+           given={Lawrence\bibnamedelima C.},
+           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \strng{namehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{fullhash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{fullhashraw}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{bibnamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorbibnamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authornamehash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorfullhash}{0d72932a7775f85a51622d3af75ae26e}
+      \strng{authorfullhashraw}{0d72932a7775f85a51622d3af75ae26e}
+      \field{sortinit}{E}
+      \field{sortinithash}{8da8a182d344d5b9047633dfc0cc9131}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Partial Differential Equations}
+      \field{year}{2010}
+    \endentry
+    \entry{hamaguchi}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=4824d28e0ca8d492fa0964dfc1cea8c5}{%
+           family={Hamaguchi},
+           familyi={H\bibinitperiod},
+           given={Chihiro},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{fullhash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{fullhashraw}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{bibnamehash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{authorbibnamehash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{authornamehash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{authorfullhash}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \strng{authorfullhashraw}{4824d28e0ca8d492fa0964dfc1cea8c5}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Fourth}
+      \field{series}{Graduate Texts in Physics}
+      \field{title}{Basic Semiconductor Physics}
+      \field{year}{2017}
+    \endentry
+    \entry{herring_vogt}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=edc8b8734ae4da05f4c4cb1380543f96}{%
+           family={Herring},
+           familyi={H\bibinitperiod},
+           given={Conyers},
+           giveni={C\bibinitperiod}}}%
+        {{hash=2f3a0f17df6f59f25206c7e8ccfe051e}{%
+           family={Vogt},
+           familyi={V\bibinitperiod},
+           given={Erich},
+           giveni={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{fullhash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{fullhashraw}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{bibnamehash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{authorbibnamehash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{authornamehash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{authorfullhash}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \strng{authorfullhashraw}{f6b85b0f9882a3598c84bf68ee3fac48}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review}
+      \field{number}{3}
+      \field{title}{Transport and Deformation-Potential Theory for Many-Valley Semiconductors with Anisotropic Scattering}
+      \field{volume}{101}
+      \field{year}{1956}
+      \field{pages}{944}
+      \range{pages}{1}
+    \endentry
+    \entry{pollak_cardona}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=dcfa925ce31b61a26421da2078bf0fe3}{%
+           family={Pollak},
+           familyi={P\bibinitperiod},
+           given={Fred\bibnamedelima H.},
+           giveni={F\bibinitperiod\bibinitdelim H\bibinitperiod}}}%
+        {{hash=a9fc3487d3c9f7916ca7de218b762cc1}{%
+           family={Cardona},
+           familyi={C\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{fullhash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{fullhashraw}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{bibnamehash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{authorbibnamehash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{authornamehash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{authorfullhash}{a7be7b3dc966fa2131d58db23fd6acec}
+      \strng{authorfullhashraw}{a7be7b3dc966fa2131d58db23fd6acec}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review}
+      \field{number}{3}
+      \field{title}{Piezo-Electroreflectance in Ge, GaAs, and Si}
+      \field{volume}{172}
+      \field{year}{1968}
+      \field{pages}{816}
+      \range{pages}{1}
+    \endentry
+    \entry{smith1954}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=dfaa2891f7cc749f19c80b029e820fd7}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={C.\bibnamedelimi S.},
+           giveni={C\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \strng{namehash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{fullhash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{fullhashraw}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{bibnamehash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{authorbibnamehash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{authornamehash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{authorfullhash}{dfaa2891f7cc749f19c80b029e820fd7}
+      \strng{authorfullhashraw}{dfaa2891f7cc749f19c80b029e820fd7}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Physical Review}
+      \field{number}{1}
+      \field{title}{Piezoresistance effect in germanium and silicon}
+      \field{volume}{94}
+      \field{year}{1954}
+      \field{pages}{42}
+      \range{pages}{1}
+    \endentry
+    \entry{DFT_Correction}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=d6b7af264a147d4a5b8b361c8e148064}{%
+           family={Wan},
+           familyi={W\bibinitperiod},
+           given={Zhongyu},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=744d9fc314be199f7b9790bfe12a130c}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Quan-De},
+           giveni={Q\bibinithyphendelim D\bibinitperiod}}}%
+        {{hash=7636ee63a445b9225f584b70e7929b8b}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Dongchang},
+           giveni={D\bibinitperiod}}}%
+        {{hash=4009903dd9a2fb7e89b3e516f18ba123}{%
+           family={Liang},
+           familyi={L\bibinitperiod},
+           given={Jinhu},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{28f69a3557f322dd6edfbae476226741}
+      \strng{fullhash}{bc9b82b51943b8dbae2807d6d1f2454f}
+      \strng{fullhashraw}{bc9b82b51943b8dbae2807d6d1f2454f}
+      \strng{bibnamehash}{28f69a3557f322dd6edfbae476226741}
+      \strng{authorbibnamehash}{28f69a3557f322dd6edfbae476226741}
+      \strng{authornamehash}{28f69a3557f322dd6edfbae476226741}
+      \strng{authorfullhash}{bc9b82b51943b8dbae2807d6d1f2454f}
+      \strng{authorfullhashraw}{bc9b82b51943b8dbae2807d6d1f2454f}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Computational Materials Science}
+      \field{number}{2021.110699}
+      \field{title}{Effectively improving the accuracy of PBE functional in calculating the solid band gap via machine learning}
+      \field{volume}{198}
+      \field{year}{2021}
+    \endentry
+    \entry{yu_cardona}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=1d582a7211cf3de0b6e5faeff3c9df69}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Peter\bibnamedelima Y.},
+           giveni={P\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=a9fc3487d3c9f7916ca7de218b762cc1}{%
+           family={Cardona},
+           familyi={C\bibinitperiod},
+           given={Manuel},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{fullhash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{fullhashraw}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{bibnamehash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{authorbibnamehash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{authornamehash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{authorfullhash}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \strng{authorfullhashraw}{5407a8e0ed2bc2c8cec9635e1127b97d}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{Fourth}
+      \field{title}{Fundamentals of Semiconductors: Physics and Materials Properties}
+      \field{year}{2010}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
